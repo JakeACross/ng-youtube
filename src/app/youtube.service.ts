@@ -8,12 +8,13 @@ import { Observable } from 'rxjs';
 })
 export class YoutubeService {
 
-  apiKey : string = 'YOUR-API';
+  apiKey: string = 'AIzaSyDcoaSJFaIKk12SuNKxO_oeM7NcEEF5_m4';
 
   constructor(public http: HttpClient) { }
 
-  getVideosForChanel(channel, maxResults): Observable<Object> {
-    let url = 'https://www.googleapis.com/youtube/v3/search?key=' + this.apiKey + '&channelId=' + channel + '&order=date&part=snippet &type=video,id&maxResults=' + maxResults
+  // tslint:disable-next-line:ban-types
+  getVideosForChanel(words, maxResults): Observable<Object> {
+    let url = 'https://www.googleapis.com/youtube/v3/search?key=' + this.apiKey + '&q=' + words + '&order=date&part=snippet &type=video,id&maxResults=' + maxResults
     return this.http.get(url)
       .pipe(map((res) => {
         return res;
